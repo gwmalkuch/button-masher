@@ -1,0 +1,53 @@
+body{
+     background-color:lightskyblue;
+}
+ 
+ /*.zone{
+     text-align: center;
+     vertical-align: center;
+ }*/
+ 
+.controls, #clickme, #points,  {
+     width: 80%;
+     display: block;
+     margin-left:auto;
+     margin-right: auto;
+ 
+}
+
+#points, #mashers{
+    color:pink;
+    font-size: 100px;
+}
+ 
+ #buy-smasher{
+   height: 50px;
+}
+
+#safe-zone{
+    height: 500px;
+    width: 500px;
+    background-color: greenyellow;
+    border-radius: 250px;
+    
+    margin-bottom:250px;
+
+    margin-left:auto;
+    margin-right: auto;
+ }
+
+#danger-zone{
+    height: 100px;
+    width: 100px;
+    padding-top:250px;
+    padding-bottom: 150px;
+    background-color:red;
+    border-radius: 20px;
+}
+
+#sweet-spot{
+    height: 2px;
+    width: 2px;
+    background-color: yellow;
+    border-radius: 1px;
+}

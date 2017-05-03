@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link href = "style.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div align="center" class="controls">
+        <span id="points"></span>
+        <img id="buy-masher" src="smasher.png" height="200px">
+        <span id="mashers"></span>
+    </div>
+    <div align="center" id="safe-zone" class="click-zone">
+        <div id="danger-zone" class="click-zone">
+            <div id="sweet-spot" class="click-zone">
+            </div>
+        </div>
+    </div>
+    <script>
+        var points = 0 ;
+        var mashers = 0;
+
+        function showPoints(){
+            $('#points').text(points);
+            $('#mashers').text(mashers);
+        }
+
+        function runMashers(){
+            points += mashers;
+            showPoints();
+        }
+
+        function get_random_color() {
+                function c() {
+                    var hex = Math.floor(Math.random()*256).toString(16);
+                    return ("0"+String(hex)).substr(-2); // pad with zero
+                }
+                return "#"+c()+c()+c();
+        }
+
+        $(document).ready(function(){
+            $('#clickme').click(function(){
+                points++;
+                showPoints();
+            })
+
+            $('#safe-zone').click(function(){
+                points++;
+                showPoints();
+                $('body').css('background-color', get_random_color());
+
+                var bodyColor = $('body').css('background-color');
+                var zoneColor = $(this).css('background-color');
+                if(bodyColor === zoneColor){
+                    crazyShitHappens();
+                }
+            })
+
+            $('#danger-zone').click(function(){
+                points -= 500;
+                showPoints();
+
+                var image = $('<img src="http://facts.be/app/uploads/image2.jpg">');
+                image.css({position: "absolute"})
+                $('body').prepend(image);
+                
+                image.animate({top: 400, left: 600}, 100);
+                image.animate({top: 0, left: 1200}, 100);
+                image.animate({top: 400, left: 600}, 100);
+                image.fadeOut();
+
+            })
+
+            $('#sweet-spot').click(function(){
+                 points += 1000;
+                showPoints();
+            })
+
+            $('#buy-masher').click(function(){
+                points -= 10;
+                mashers++;
+                showPoints();
+            });
+
+            setInterval(runMashers, 1000);
+        })
+    </script>
+</body>
+</html> 
+
